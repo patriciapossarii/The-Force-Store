@@ -6,7 +6,11 @@ import logotipo from '../../assets/logo.png'
 
 
 function Header(props) {
-    const {goToCartScreen,goToProductsScreen} = props
+    const {goToCartScreen,
+        goToProductsScreen,
+        filterText,
+        onChangeFilterText
+    } = props
     
 
     const sideForceArray = [
@@ -49,7 +53,7 @@ function Header(props) {
                         type="text"
                         placeholder="Buscar por nome"
                         value={props.buscaNome}
-                        onChange={onChangeNome} />
+                        onChange={onChangeFilterText} />
                     <img src={searchIcon} alt="Search icon" />
                 </a>
 

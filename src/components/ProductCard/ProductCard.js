@@ -22,7 +22,6 @@ function ProductCard(props) {
     const {
         cardColor,
         product,
-        products,
         addToCart,
         isOnProductsScreen,
         isOnCartScreen,
@@ -34,10 +33,11 @@ function ProductCard(props) {
     const GlobalStyle = createGlobalStyle`
         
       `;
+
+      
     return (
         <div>
-            <p>{isOnProductsScreen && "Sou da tela de Produtos"}</p>
-            <p>{isOnCartScreen && "Sou da tela de Carrinho"}</p>
+
             <Container color={cardColor}>
                 <LogoCard src={logocard} alt="logocard" />
                 <GlobalStyle />
@@ -45,7 +45,7 @@ function ProductCard(props) {
                     <ProductName>{product.name.english}</ProductName>
 
                     <ProductImg src={`https://cdn-cosmos.bluesoft.com.br/products/${product.id}`} alt="" />
-                    
+
                     <PriceProduct>Valor unitario: {priceFormatter.format(product.price)}
                     </PriceProduct>
 

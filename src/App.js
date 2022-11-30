@@ -7,6 +7,10 @@ function App() {
 
     const [activeScreen, setActiveScreen] = useState("ProductsScreen")
     const [cart, setCart] = useState([])
+    const [filterText, setFilterText] = useState("")
+    const [ordernarValor, setOrdernarValor] = useState("")
+    const [ordernarNome, setOrdernarNome] = useState("")
+    const [selecionarTipo, setSelecionarTipo] = useState("")
 
     const goToProductsScreen = () => {
         setActiveScreen("ProductsScreen")
@@ -20,13 +24,28 @@ function App() {
     const renderScreen = () => {
         switch (activeScreen) {
             case "ProductsScreen":
-                return <ProductsScreen addToCart={addToCart} />
+                return <ProductsScreen
+                    addToCart={addToCart}
+
+                    filterText={filterText}
+                    setFilterText={setFilterText}
+
+                    ordernarNome={ordernarNome}
+                    setOrdernarNome={setOrdernarNome}
+
+                    ordernarValor={ordernarValor}
+                    setOrdernarValor={setOrdernarValor}
+
+                    selecionarTipo={selecionarTipo}
+                    setSelecionarTipo={setSelecionarTipo} />
+
             case "CartScreen":
-                return <CartScreen 
-                cart={cart}
-                decreaseQuantityInCart={decreaseQuantityInCart} 
-                increaseQuantityInCart={increaseQuantityInCart}
-                deleteFromCart={deleteFromCart}/>
+                return <CartScreen
+                    cart={cart}
+                    decreaseQuantityInCart={decreaseQuantityInCart}
+                    increaseQuantityInCart={increaseQuantityInCart}
+                    deleteFromCart={deleteFromCart}
+                />
             default:
                 return <div> Tela Não Existe </div>
         }
@@ -62,22 +81,40 @@ function App() {
         productFound.quantity--
         setCart(newCart)
     }
-    
+
     const deleteFromCart = (productToDelete) => {
         const newCart = [...cart]
         const indexFound = newCart.findIndex(
-          (productInCart) => productInCart.id === productToDelete.id
+            (productInCart) => productInCart.id === productToDelete.id
         )
         newCart.splice(indexFound, 1)
         setCart(newCart)
-      }
+    }
 
+
+    const onChangeFilterText = (e) => {
+        setFilterText(e.target.value)
+    }
     return (
         <>
             <Header
                 goToCartScreen={goToCartScreen}
                 goToProductsScreen={goToProductsScreen}
-                itemsInCart={cart.length} />
+                itemsInCart={cart.length}
+
+                filterText={filterText}
+                onChangeFilterText={onChangeFilterText}
+
+                ordernarNome={ordernarNome}
+                setOrdernarNome={setOrdernarNome}
+
+                ordernarValor={ordernarValor}
+                setOrdernarValor={setOrdernarValor}
+
+                selecionarTipo={selecionarTipo}
+                setSelecionarTipo={setSelecionarTipo}
+
+            />
 
             {renderScreen()}
         </>)

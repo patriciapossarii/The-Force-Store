@@ -1,18 +1,34 @@
 import { useState } from "react";
 import Header from "../../components/Header/Header"
-import productsData from "../../product/productsData.json"
+import products from "../../product/productsData.json"
 import { getColors } from "../../utils/ReturnCardColor";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { Main } from "./ProductsScreen.styled";
 import { Background } from "./ProductsScreen.styled";
 
 function ProductsScreen(props) {
-    const [buscaNome, setBuscaNome] = useState("")
-    const [ordernarValor, setOrdernarValor] = useState("")
-    const [ordernarNome, setOrdernarNome] = useState("")
-    const [selecionarTipo, setSelecionarTipo] = useState("")
 
-    const { addToCart } = props
+
+    const { addToCart,
+        filterText,
+        
+     } = props
+
+ /*
+   {<Header
+   buscaNome={buscaNome}
+   setBuscaNome={setBuscaNome}
+   
+   ordernarNome={ordernarNome}
+   setOrdernarNome={setOrdernarNome}
+   
+   ordernarValor={ordernarValor}
+   setOrdernarValor={setOrdernarValor}
+   
+   selecionarTipo={selecionarTipo}
+   setSelecionarTipo={setSelecionarTipo}
+   />}
+   */
 
     /************ INICIO MEU CODIGO ************
     {productsData
@@ -62,37 +78,24 @@ function ProductsScreen(props) {
 
     /*}*/
 
-    /*
-   <Header
-   buscaNome={buscaNome}
-   setBuscaNome={setBuscaNome}
-   
-   ordernarNome={ordernarNome}
-   setOrdernarNome={setOrdernarNome}
-   
-   ordernarValor={ordernarValor}
-   setOrdernarValor={setOrdernarValor}
-   
-   selecionarTipo={selecionarTipo}
-   setSelecionarTipo={setSelecionarTipo}
-   />
+    const filterProductsByText = () => {
+        return products.filter(
+            (product) => product.name.english.toLowerCase().includes(filterText.toLowerCase())
+        )
+    }
+
     
-   */
+ 
 
     return (
 
         <Main>
             <Background />
-            <section>
+            <section >
 
                 <h1>Produtos</h1>
-                {productsData
-
-                    /*=============== SELECIONAR O LADO DA FORÇA */
-
-                    .filter((product) => {
-                        return selecionarTipo ? product.type.includes(selecionarTipo) : product
-                    })
+                {
+                filterProductsByText()
                     .map((product) => (
                         <ProductCard
                             cardColor={getColors(product.type[0])}
