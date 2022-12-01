@@ -11,81 +11,12 @@ function ProductsScreen(props) {
 
     const { addToCart,
         filterText,
-        
-     } = props
-
- /*
-   {<Header
-   buscaNome={buscaNome}
-   setBuscaNome={setBuscaNome}
-   
-   ordernarNome={ordernarNome}
-   setOrdernarNome={setOrdernarNome}
-   
-   ordernarValor={ordernarValor}
-   setOrdernarValor={setOrdernarValor}
-   
-   selecionarTipo={selecionarTipo}
-   setSelecionarTipo={setSelecionarTipo}
-   />}
-   */
-
-    /************ INICIO MEU CODIGO ************
-    {productsData
-            /*==============BUSCAR NOME*/
-    /************ INICIO MEU CODIGO ************
-   .filter((products) => products.name.english.toLowerCase().includes(buscaNome))
-/************ FIM MEU CODIGO ************
-/*=============== ORDENAR POR NOME */
-
-    /*==============BUSCAR NOME
-   .sort((a, b) => {
-       if (ordernarNome === "crescente") {
-           return a.name.english < b.name.english ? -1 : 1
-       }
-       else if (ordernarNome === "decrescente") {
-           return a.name.english < b.name.english ? 1 : -1
-       }
-   })
+        orderByName,
+        orderByPrice,
+        selectSide,
+    } = props
 
 
-   /*=============== ORDENAR POR VALOR */
-    /************ INICIO MEU CODIGO ************
-    .sort((a, b) => {
-        if (ordernarValor === "menor") {
-            return a.price < b.price ? -1 : 1
-        }
-        else if (ordernarValor === "maior") {
-            return a.price < b.price ? 1 : -1
-        }
-    })
-
-
-    /*=============== SELECIONAR TIPO */
-    /************ INICIO MEU CODIGO ************
-            .filter((products) => {
-                return selecionarTipo ? products.type.includes(selecionarTipo) : products
-            })
-    
-            //*=============== */
-    /*   .map((products) => {
-         return <ProductsCards
-           cardColor={getColors(products.type[0])}
-           key={products.id}
-           products={products}
-         />})
-         */
-
-    /*}*/
-
-    const filterProductsByText = () => {
-        return products.filter(
-            (product) => product.name.english.toLowerCase().includes(filterText.toLowerCase())
-        )
-    }
-
-    
- 
 
     return (
 
@@ -94,8 +25,37 @@ function ProductsScreen(props) {
             <section >
 
                 <h1>Produtos</h1>
-                {
-                filterProductsByText()
+                {products
+
+                    //ORDER BY NAME
+                    .sort((a, b) => {
+                        if (orderByName === "crescente") {
+                            return a.name.english < b.name.english ? -1 : 1
+                        }
+                        else if (orderByName === "decrescente") {
+                            return a.name.english < b.name.english ? 1 : -1
+                        }
+                    })
+
+                    // ORDER BY PRICE
+                    .sort((a, b) => {
+                        if (orderByPrice === "menor") {
+                            return a.price < b.price ? -1 : 1
+                        }
+                        else if (orderByPrice === "maior") {
+                            return a.price < b.price ? 1 : -1
+                        }
+                    })
+
+                    //SELECT FORCE SIDE
+                    .filter((products) => {
+                        return selectSide ? products.type.includes(selectSide) : products
+                    })
+
+                    //FILTER BY TEXT
+                    .filter((products) => products.name.english.toLowerCase().includes(filterText))
+
+
                     .map((product) => (
                         <ProductCard
                             cardColor={getColors(product.type[0])}

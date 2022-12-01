@@ -8,9 +8,9 @@ function App() {
     const [activeScreen, setActiveScreen] = useState("ProductsScreen")
     const [cart, setCart] = useState([])
     const [filterText, setFilterText] = useState("")
-    const [ordernarValor, setOrdernarValor] = useState("")
-    const [ordernarNome, setOrdernarNome] = useState("")
-    const [selecionarTipo, setSelecionarTipo] = useState("")
+    const [orderByPrice, setOrderByPrice] = useState("")
+    const [orderByName, setOrderByName] = useState("")
+    const [selectSide, setSelectSide] = useState("")
 
     const goToProductsScreen = () => {
         setActiveScreen("ProductsScreen")
@@ -30,14 +30,14 @@ function App() {
                     filterText={filterText}
                     setFilterText={setFilterText}
 
-                    ordernarNome={ordernarNome}
-                    setOrdernarNome={setOrdernarNome}
+                    orderByName={orderByName}
+                    setOrderByName={setOrderByName}
 
-                    ordernarValor={ordernarValor}
-                    setOrdernarValor={setOrdernarValor}
+                    orderByPrice={orderByPrice}
+                    setOrderByPrice={setOrderByPrice}
 
-                    selecionarTipo={selecionarTipo}
-                    setSelecionarTipo={setSelecionarTipo} />
+                    selectSide={selectSide}
+                    setSelectSide={setSelectSide} />
 
             case "CartScreen":
                 return <CartScreen
@@ -95,6 +95,7 @@ function App() {
     const onChangeFilterText = (e) => {
         setFilterText(e.target.value)
     }
+
     return (
         <>
             <Header
@@ -105,14 +106,14 @@ function App() {
                 filterText={filterText}
                 onChangeFilterText={onChangeFilterText}
 
-                ordernarNome={ordernarNome}
-                setOrdernarNome={setOrdernarNome}
+                orderByName={orderByName}
+                setOrderByName={setOrderByName}
 
-                ordernarValor={ordernarValor}
-                setOrdernarValor={setOrdernarValor}
+                orderByPrice={orderByPrice}
+                setOrderByPrice={setOrderByPrice}
 
-                selecionarTipo={selecionarTipo}
-                setSelecionarTipo={setSelecionarTipo}
+                selectSide={selectSide}
+                setSelectSide={setSelectSide}
 
             />
 

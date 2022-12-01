@@ -9,7 +9,10 @@ function Header(props) {
     const {goToCartScreen,
         goToProductsScreen,
         filterText,
-        onChangeFilterText
+        onChangeFilterText,
+        orderByName,
+        selectSide,
+        orderByPrice
     } = props
     
 
@@ -17,18 +20,17 @@ function Header(props) {
         "Light",
         "Dark"];
 
-    const onChangeNome = (e) => {
-        props.setBuscaNome(e.target.value)}
+  
 
-    const onChangeOrdernarNome = (e) => {
-        props.setOrdernarNome(e.target.value)}
+    const onChangeOrderByName = (e) => {
+        props.setOrderByName(e.target.value)}
 
-    const onChangeOrdernarValor = (e) => {
-        props.setOrdernarValor(e.target.value)}
+    const onChangeOrderByPrice = (e) => {
+        props.setOrderByPrice(e.target.value)}
 
 
-    const onChangeSelecionarTipo = (e) => {
-        props.setSelecionarTipo(e.target.value)}
+    const onChangeSelectSide = (e) => {
+        props.setSelectSide(e.target.value)}
 
     return (
         <HeaderContainer>
@@ -52,20 +54,20 @@ function Header(props) {
                     <input
                         type="text"
                         placeholder="Buscar por nome"
-                        value={props.buscaNome}
+                        value={filterText}
                         onChange={onChangeFilterText} />
                     <img src={searchIcon} alt="Search icon" />
                 </a>
 
 
-                <select value={props.ordernarNome} onChange={onChangeOrdernarNome}>
+                <select value={orderByName} onChange={onChangeOrderByName}>
                     <option value="">Ordenar Itens por Nome</option>
                     <option value="crescente">Crescente</option>
                     <option value="decrescente">Decrescente</option>
                 </select>
 
 
-                <select value={props.ordernarValor} onChange={onChangeOrdernarValor}>
+                <select value={orderByPrice} onChange={onChangeOrderByPrice}>
                     <option value="">Ordenar Preço</option>
                     <option value="menor">Crescente</option>
                     <option value="maior">Decrescente</option>
@@ -75,8 +77,8 @@ function Header(props) {
                 <select
                     name="tipo"
                     id="tipo"
-                    value={props.selecionarTipo}
-                    onChange={onChangeSelecionarTipo} >
+                    value={selectSide}
+                    onChange={onChangeSelectSide} >
 
                     <option value="">Escoher um lado da Força</option>
                     {sideForceArray.map((type) => {
