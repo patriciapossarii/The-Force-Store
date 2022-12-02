@@ -11,6 +11,9 @@ function App() {
     const [orderByPrice, setOrderByPrice] = useState("")
     const [orderByName, setOrderByName] = useState("")
     const [selectSide, setSelectSide] = useState("")
+    const [lowPrice, setLowPrice] = useState(0)
+    const [highPrice, setHighPrice] = useState(0)
+    const [filterByMinAndHighPrice, setFilterByMinAndHighPrice] = useState("")
 
     const goToProductsScreen = () => {
         setActiveScreen("ProductsScreen")
@@ -37,7 +40,18 @@ function App() {
                     setOrderByPrice={setOrderByPrice}
 
                     selectSide={selectSide}
-                    setSelectSide={setSelectSide} />
+                    setSelectSide={setSelectSide}
+
+                    lowPrice={lowPrice}
+                    setLowPrice={setLowPrice}
+
+                    highPrice={highPrice}
+                    setHighPrice={setHighPrice}
+
+                    filterByMinAndHighPrice={filterByMinAndHighPrice}
+                    setFilterByMinAndHighPrice={setFilterByMinAndHighPrice}
+
+                />
 
             case "CartScreen":
                 return <CartScreen
@@ -45,6 +59,7 @@ function App() {
                     decreaseQuantityInCart={decreaseQuantityInCart}
                     increaseQuantityInCart={increaseQuantityInCart}
                     deleteFromCart={deleteFromCart}
+                
                 />
             default:
                 return <div> Tela Não Existe </div>
@@ -114,6 +129,15 @@ function App() {
 
                 selectSide={selectSide}
                 setSelectSide={setSelectSide}
+
+                lowPrice={lowPrice}
+                setLowPrice={setLowPrice}
+
+                highPrice={highPrice}
+                setHighPrice={setHighPrice}
+
+                filterByMinAndHighPrice={filterByMinAndHighPrice}
+                setFilterByMinAndHighPrice={setFilterByMinAndHighPrice}
 
             />
 

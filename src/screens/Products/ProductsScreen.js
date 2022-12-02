@@ -14,62 +14,89 @@ function ProductsScreen(props) {
         orderByName,
         orderByPrice,
         selectSide,
+        lowPrice,
+        highPrice,
+       
     } = props
 
+   let listraFiltrada = products
 
+    {
+        //FILTER BY TEXT
+        if (filterText != null) {
+            listraFiltrada= listraFiltrada.filter((products) => products.name.english.toLowerCase().includes(filterText))
+        }
 
-    return (
+        //SELECT FORCE SIDE
+        if (selectSide != null) {
+            listraFiltrada= listraFiltrada.filter((products) => {
+                return selectSide ? products.type.includes(selectSide) : products
+            })
+        }
 
-        <Main>
-            <Background />
-            <section >
+        //FILTER MIN AND MAX PRICE
+        if(lowPrice>0  && highPrice>0){
+            listraFiltrada= listraFiltrada.filter((product) => product.price >= lowPrice && product.price <= highPrice )
+            console.log("ambos",lowPrice,highPrice)
+        }else if (lowPrice >0) {
+            listraFiltrada= listraFiltrada.filter((product) => product.price >= lowPrice )
+            console.log("low")
+        } else if (highPrice >0) {
+            listraFiltrada= listraFiltrada.filter((product) => product.price <= highPrice )
+           console.log("hight")
+        }
+      
 
-                <h1>Produtos</h1>
-                {products
+        //ORDER BY NAME
+        if (orderByName != null) {
+            listraFiltrada= listraFiltrada.sort((a, b) => {
+                if (orderByName === "crescente") {
+                    return a.name.english < b.name.english ? -1 : 1
+                }
+                else if (orderByName === "decrescente") {
+                    return a.name.english < b.name.english ? 1 : -1
+                }
+            })
+        }
+        //ORDER BY PRICE
+        if (orderByPrice != null) {
+            listraFiltrada= listraFiltrada.sort((a, b) => {
+                if (orderByPrice === "menor") {
+                    return a.price < b.price ? -1 : 1
+                }
+                else if (orderByPrice === "maior") {
+                    return a.price < b.price ? 1 : -1
+                }
+            })
+        }
 
-                    //ORDER BY NAME
-                    .sort((a, b) => {
-                        if (orderByName === "crescente") {
-                            return a.name.english < b.name.english ? -1 : 1
-                        }
-                        else if (orderByName === "decrescente") {
-                            return a.name.english < b.name.english ? 1 : -1
-                        }
-                    })
+        return (
 
-                    // ORDER BY PRICE
-                    .sort((a, b) => {
-                        if (orderByPrice === "menor") {
-                            return a.price < b.price ? -1 : 1
-                        }
-                        else if (orderByPrice === "maior") {
-                            return a.price < b.price ? 1 : -1
-                        }
-                    })
+            <Main>
+                <Background />
+                <section >
 
-                    //SELECT FORCE SIDE
-                    .filter((products) => {
-                        return selectSide ? products.type.includes(selectSide) : products
-                    })
+                    <h1>Produtos</h1>
+               
+                               
 
-                    //FILTER BY TEXT
-                    .filter((products) => products.name.english.toLowerCase().includes(filterText))
+                
+                
 
-
-                    .map((product) => (
-                        <ProductCard
-                            cardColor={getColors(product.type[0])}
-                            key={product.id}
-                            product={product}
-                            addToCart={addToCart}
-                            isOnProductsScreen={true}
-                        />
+                {listraFiltrada.map((product) => (
+                    <ProductCard
+                        cardColor={getColors(product.type[0])}
+                        key={product.id}
+                        product={product}
+                        addToCart={addToCart}
+                        isOnProductsScreen={true}
+                    />
                     ))
                 }
 
-            </section>
-        </Main>
-    )
+                </section>
+            </Main>
+        )
+    }
 }
-
-export default ProductsScreen
+    export default ProductsScreen

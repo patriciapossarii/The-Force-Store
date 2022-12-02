@@ -6,47 +6,61 @@ import logotipo from '../../assets/logo.png'
 
 
 function Header(props) {
-    const {goToCartScreen,
+    const { goToCartScreen,
         goToProductsScreen,
         filterText,
         onChangeFilterText,
         orderByName,
         selectSide,
-        orderByPrice
+        orderByPrice,
+        lowPrice,
+        highPrice,
+        filterByMinAndHighPrice,
     } = props
-    
+
 
     const sideForceArray = [
         "Light",
         "Dark"];
 
-  
+
 
     const onChangeOrderByName = (e) => {
-        props.setOrderByName(e.target.value)}
+        props.setOrderByName(e.target.value)
+    }
 
     const onChangeOrderByPrice = (e) => {
-        props.setOrderByPrice(e.target.value)}
+        props.setOrderByPrice(e.target.value)
+    }
 
 
     const onChangeSelectSide = (e) => {
-        props.setSelectSide(e.target.value)}
+        props.setSelectSide(e.target.value)
+    }
+
+    const onChangeLowPrice = (e) => {
+        props.setLowPrice(e.target.value)
+    }
+
+    const onChangehighPrice = (e) => {
+        props.setHighPrice(e.target.value)
+    }
 
     return (
         <HeaderContainer>
-           
-                <Img src={logotipo} alt="Cart icon" />
 
-                <div className="button-group">
-                    <button onClick={goToProductsScreen}>
-                        <img src={productIcon} alt="Product icon" />
-                    </button>
+            <Img src={logotipo} alt="Cart icon" />
 
-                    <button onClick={goToCartScreen} className="cart-btn">
-                        <img src={cartIcon} alt="Cart icon" />
-                    </button>
-                </div>
-           
+            <div className="button-group">
+                <button onClick={goToProductsScreen}>
+                    <img src={productIcon} alt="Product icon" />
+                </button>
+
+                <button onClick={goToCartScreen} className="cart-btn">
+                    <img src={cartIcon} alt="Cart icon" />
+                </button>
+            </div>
+
 
 
             <SearchContainer>
@@ -72,6 +86,25 @@ function Header(props) {
                     <option value="menor">Crescente</option>
                     <option value="maior">Decrescente</option>
                 </select>
+
+                <a>
+                    <input
+                        type="number"
+                        placeholder="Valor Mínimo"
+                        min="0"
+                        value={lowPrice}
+                        onChange={onChangeLowPrice}
+                    />
+
+                    <input
+                        type="number"
+                        placeholder="Valor Máximo"
+                        min="0"
+                        value={highPrice}
+                        onChange={onChangehighPrice}
+                    />
+
+                </a>
 
 
                 <select
