@@ -39,7 +39,8 @@ export const ProductName = styled.h1`
 
 export const LogoCard = styled.img`
   position: absolute;
-  top: 200px;
+  top: 185px;
+  margin:20px;
   max-height: 440px;
   max-width: 150px;
   
@@ -56,20 +57,30 @@ export const QuantityCart = styled.p`
   position: absolute;
   top: 325px;
   font-size:15px;
-  background-color:black;
+
   width:96%;
-  margin:8px;
+ 
+  padding:10px;
+  display:flex;
+  Justify-content:space-between;
+  align-items:center;
+
 
   button{
-  background-color: transparent;
-  border: none;
-  padding: 0;
+  background-color: black;
+    padding: 0;
   color: #fff;
-  height: 16px;
+  height: 20px;
   cursor: pointer;
   transition: 0.2s linear;
   line-height: 24px;
-  width:15px;
+  width:30px;
+  background:green
+  display:flex;
+  Justify-content:space-between;
+  align-items:center;
+  border: solid silver 1px;
+ 
 }
 
 .cart-card-delete-btn{
@@ -97,9 +108,10 @@ export const ProductType = styled.img`
 
 export const BuyButton = styled.button`
   padding: 4px 10px;
+  cursor:pointer;
   width: 100px;
   height: 38px;
-  background: #ffffff;
+  background: black;
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -108,6 +120,12 @@ export const BuyButton = styled.button`
   right: 2px;
   z-index: 2;
   color: #000;
+  img{
+    max-height: 90px;
+    max-width: 36px;
+  }
+  :hover {
+    background:linear-gradient(to top, silver, black, black, black, black, black, black, black);    }
 `;
 
 export const ProductImg = styled.img`

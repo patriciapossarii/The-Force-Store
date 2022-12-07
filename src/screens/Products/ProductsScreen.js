@@ -1,5 +1,3 @@
-import { useState } from "react";
-import Header from "../../components/Header/Header"
 import products from "../../product/productsData.json"
 import { getColors } from "../../utils/ReturnCardColor";
 import ProductCard from "../../components/ProductCard/ProductCard";
@@ -7,8 +5,6 @@ import { Main } from "./ProductsScreen.styled";
 import { Background } from "./ProductsScreen.styled";
 
 function ProductsScreen(props) {
-
-
     const { addToCart,
         filterText,
         orderByName,

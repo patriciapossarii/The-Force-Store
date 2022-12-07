@@ -15,15 +15,13 @@ function Header(props) {
         orderByPrice,
         lowPrice,
         highPrice,
-        filterByMinAndHighPrice,
-    } = props
+        itemsInCart,
+          } = props
 
 
     const sideForceArray = [
         "Light",
         "Dark"];
-
-
 
     const onChangeOrderByName = (e) => {
         props.setOrderByName(e.target.value)
@@ -53,10 +51,16 @@ function Header(props) {
 
             <div className="button-group">
                 <button onClick={goToProductsScreen}>
+               
+
                     <img src={productIcon} alt="Product icon" />
                 </button>
 
                 <button onClick={goToCartScreen} className="cart-btn">
+                {
+                        itemsInCart > 0
+                        && <span className="cart-badge">{itemsInCart}</span>
+                    }
                     <img src={cartIcon} alt="Cart icon" />
                 </button>
             </div>

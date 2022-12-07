@@ -19,7 +19,7 @@ function CartScreen(props) {
     return (
         <Main>
             <section>
-                <h1> R$ Total = {priceFormatter.format(total)}</h1>
+                <h1> Valor total do carrinho: {priceFormatter.format(total)}</h1>
                 <hr />
                 {cart.map((product) => (
 

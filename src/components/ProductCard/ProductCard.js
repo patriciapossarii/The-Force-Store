@@ -1,9 +1,7 @@
 import { priceFormatter } from "../../utils/priceFormatter"
 import React from "react";
-import styled, { createGlobalStyle } from "styled-components";
 import {
     Container,
-    ProductNumber,
     ProductName,
     ProductType,
     TypesContainer,
@@ -13,8 +11,9 @@ import {
     ProductImg,
     QuantityCart
 } from './ProductCard.styled'
-import logocard from '../../assets/darth.png'
+import logocard from '../../assets/star.png'
 import { getTypes } from '../../utils/ReturnProductsType'
+import iconBuyProduct from "../../assets/cart.png"
 
 
 function ProductCard(props) {
@@ -30,17 +29,15 @@ function ProductCard(props) {
         deleteFromCart
     } = props
 
-    const GlobalStyle = createGlobalStyle`
-        
-      `;
 
-      
+
+
     return (
         <div>
 
             <Container color={cardColor}>
                 <LogoCard src={logocard} alt="logocard" />
-                <GlobalStyle />
+
                 <div>
                     <ProductName>{product.name.english}</ProductName>
 
@@ -78,8 +75,9 @@ function ProductCard(props) {
                     </TypesContainer>
 
                     {isOnProductsScreen &&
-                        <BuyButton onClick={() => addToCart(product)}>Add no Carrinho</BuyButton>
+                        <BuyButton onClick={() => addToCart(product)}><img src={iconBuyProduct}/></BuyButton>
                     }
+                    
 
                 </div>
 

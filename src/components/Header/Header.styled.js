@@ -5,11 +5,14 @@ export const HeaderContainer = styled.header`
     Flex-direction:column;
     justify-content: space-between;
     background-color:black;
+    flex-wrap:wrap;
 
     .button-group {
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        flex-wrap:wrap;
+      
     }
 
     button {
@@ -35,8 +38,8 @@ export const HeaderContainer = styled.header`
 
     .cart-badge {
         position: absolute;
-        top: 10%;
-        right: 10%;
+        top: 13%;
+        right: 9%;
         border-radius: 50%;
         background-color: white;
         height: 18px;
@@ -59,4 +62,5 @@ export const SearchContainer = styled.div`
         align-items: center;
         justify-content: space-between;
         padding:16px;
+        flex-wrap:wrap;
         `

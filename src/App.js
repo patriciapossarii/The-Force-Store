@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useEffect, useState } from 'react'
 import Header from "./components/Header/Header"
 import CartScreen from "./screens/Cart/CartScreen"
 import ProductsScreen from "./screens/Products/ProductsScreen"
@@ -11,8 +11,8 @@ function App() {
     const [orderByPrice, setOrderByPrice] = useState("")
     const [orderByName, setOrderByName] = useState("")
     const [selectSide, setSelectSide] = useState("")
-    const [lowPrice, setLowPrice] = useState(0)
-    const [highPrice, setHighPrice] = useState(0)
+    const [lowPrice, setLowPrice] = useState()
+    const [highPrice, setHighPrice] = useState()
     const [filterByMinAndHighPrice, setFilterByMinAndHighPrice] = useState("")
 
     const goToProductsScreen = () => {
@@ -22,7 +22,6 @@ function App() {
     const goToCartScreen = () => {
         setActiveScreen("CartScreen")
     }
-
 
     const renderScreen = () => {
         switch (activeScreen) {
@@ -59,7 +58,7 @@ function App() {
                     decreaseQuantityInCart={decreaseQuantityInCart}
                     increaseQuantityInCart={increaseQuantityInCart}
                     deleteFromCart={deleteFromCart}
-                
+
                 />
             default:
                 return <div> Tela Não Existe </div>
@@ -111,11 +110,27 @@ function App() {
         setFilterText(e.target.value)
     }
 
+    useEffect(() => {
+        if (cart.length > 0) {
+            const cartString = JSON.stringify(cart)
+            localStorage.setItem("Carrinho", cartString)
+        }
+    }, [cart])
+
+    useEffect(() => {
+        const cartGet = localStorage.getItem("Carrinho")
+        if (cartGet !== null) {
+            const cartArray = JSON.parse(cartGet)
+            setCart(cartArray)
+        }
+    }, [])
+
     return (
         <>
             <Header
                 goToCartScreen={goToCartScreen}
                 goToProductsScreen={goToProductsScreen}
+                
                 itemsInCart={cart.length}
 
                 filterText={filterText}
